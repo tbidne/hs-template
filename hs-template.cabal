@@ -1,0 +1,47 @@
+cabal-version:      2.4
+name:               hs-template
+version:            0.1.0.0
+license:            MIT
+license-file:       LICENSE
+tested-with:        GHC ==8.10.7
+copyright:          2021 Thomas Bidne
+author:             Thomas Bidne
+maintainer:         tbidne@prontonmail.com
+homepage:           https://github.com/tbidne/hs-template/
+bug-reports:        https://github.com/tbidne/hs-template/issues
+synopsis:           Template
+description:        Template
+category:           Template
+extra-source-files:
+  CHANGELOG.md
+  README.md
+
+source-repository head
+  type:     git
+  location: https://github.com/tbidne/hs-template
+
+common common-exts
+  default-extensions:
+    ImportQualifiedPost
+    NegativeLiterals
+    NumericUnderscores
+    OverloadedStrings
+    TypeApplications
+
+library
+  import:           common-exts
+  exposed-modules:  Lib
+  build-depends:    base >=4.14.0.0 && <4.17
+  hs-source-dirs:   src
+  default-language: Haskell2010
+
+executable hs-template
+  import:           common-exts
+  main-is:          Main.hs
+  build-depends:
+    , base
+    , hs-template
+
+  hs-source-dirs:   app
+  ghc-options:      -threaded -with-rtsopts=-N
+  default-language: Haskell2010

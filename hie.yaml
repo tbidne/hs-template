@@ -1,0 +1,7 @@
+cradle:
+  cabal:
+    - path: "./src"
+      component: "lib:hs-template"
+
+    - path: "./app/Main.hs"
+      component: "hs-template:exe:hs-template"

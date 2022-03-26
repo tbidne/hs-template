@@ -6,4 +6,4 @@ package hs-template
     -Wall -Wcompat -Werror -Widentities
     -Wincomplete-record-updates -Wincomplete-uni-patterns
     -Wmissing-home-modules -Wmissing-export-lists -Wpartial-fields
-    -Wredundant-constraints
+    -Wredundant-constraints -Wunused-packages

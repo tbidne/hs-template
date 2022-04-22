@@ -10,7 +10,7 @@
     flake-utils.lib.eachDefaultSystem (system:
     let
       pkgs = import nixpkgs { inherit system; };
-      compilerVersion = "ghc8107";
+      compilerVersion = "ghc922";
       compiler = pkgs.haskell.packages."${compilerVersion}";
       mkPkg = returnShellEnv:
         compiler.developPackage {

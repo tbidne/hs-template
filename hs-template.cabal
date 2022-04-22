@@ -22,11 +22,36 @@ source-repository head
 
 common common-exts
   default-extensions:
+    BangPatterns
+    ConstraintKinds
+    DataKinds
+    DeriveFunctor
+    DeriveGeneric
+    DeriveTraversable
+    DerivingStrategies
+    DerivingVia
+    FlexibleContexts
+    FlexibleInstances
+    FunctionalDependencies
+    GADTs
+    GeneralizedNewtypeDeriving
     ImportQualifiedPost
-    NegativeLiterals
+    InstanceSigs
+    LambdaCase
+    MultiParamTypeClasses
+    MultiWayIf
+    NamedFieldPuns
     NumericUnderscores
     OverloadedStrings
+    PatternSynonyms
+    RankNTypes
+    ScopedTypeVariables
+    StandaloneDeriving
+    StandaloneKindSignatures
+    TupleSections
     TypeApplications
+    TypeFamilyDependencies
+    TypeOperators
 
 library
   import:           common-exts

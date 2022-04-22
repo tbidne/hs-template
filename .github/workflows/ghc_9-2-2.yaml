@@ -1,4 +1,4 @@
-name: "8.10.7"
+name: "9-2-2"
 
 on:
   push:
@@ -12,7 +12,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  cabal_8-10-7:
+  cabal_9-2-2:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -24,6 +24,6 @@ jobs:
 
       - name: Compile
         run: |
-          nix-shell nix/ghc_8-10-7.nix --command \
+          nix-shell nix/ghc_9-2-2.nix --command \
             "cabal update && \
              cabal build --write-ghc-environment-files=always"

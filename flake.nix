@@ -18,7 +18,7 @@
           name = "hs-template";
           root = ./.;
           modifier = drv:
-            pkgs.haskell.lib.addBuildTools drv (with pkgs.haskellPackages; [
+            pkgs.haskell.lib.addBuildTools drv (with compiler; [
               cabal-install
               cabal-plan
               haskell-language-server

@@ -3,7 +3,4 @@ packages: .
 package hs-template
   tests: true
   ghc-options:
-    -Wall -Wcompat -Werror -Widentities
-    -Wincomplete-record-updates -Wincomplete-uni-patterns
-    -Wmissing-home-modules -Wmissing-export-lists -Wpartial-fields
-    -Wredundant-constraints -Wunused-packages
+    -Weverything -Werror

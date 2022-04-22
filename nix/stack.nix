@@ -1,5 +1,5 @@
 let
-  compilerVersion = "ghc921";
+  compilerVersion = "ghc902";
   lock = builtins.fromJSON (builtins.readFile ../flake.lock);
   pkgs = import
     (fetchTarball {
@@ -10,7 +10,7 @@ let
   compiler = pkgs.haskell.packages."${compilerVersion}";
 in
 pkgs.haskell.lib.buildStackProject {
-  name = "shell-run";
+  name = "hs-template";
 
   buildInputs = with pkgs; [
     git

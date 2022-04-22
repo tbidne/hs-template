@@ -1,10 +1,7 @@
-resolver: lts-18.24
+resolver: lts-19.4
 packages:
 - .
 ghc-options:
-  -Wall -Wcompat -Werror -Widentities
-  -Wincomplete-record-updates -Wincomplete-uni-patterns
-  -Wmissing-home-modules -Wmissing-export-lists -Wpartial-fields
-  -Wredundant-constraints -Wunused-packages
+  -Weverything -Werror
 nix:
   shell-file: nix/stack.nix

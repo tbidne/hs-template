@@ -2,6 +2,7 @@ resolver: lts-19.4
 packages:
 - .
 ghc-options:
-  -Weverything -Werror
+  -Weverything -Werror -Wno-unsafe -Wno-missing-safe-haskell-mode
+  -Wno-implicit-prelude -Wno-missing-local-signatures
 nix:
   shell-file: nix/stack.nix

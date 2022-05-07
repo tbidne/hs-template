@@ -1,6 +1,5 @@
 { compilerVersion
-, hash ? (builtins.fromJSON (builtins.readFile ../flake.lock))
-          .nodes.nixpkgs.locked.rev
+, hash ? (builtins.fromJSON (builtins.readFile ../flake.lock)).nodes.nixpkgs.locked.rev
 }:
 
 let

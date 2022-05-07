@@ -1,12 +1,12 @@
 { compilerVersion
-, lock ? builtins.fromJSON (builtins.readFile ../flake.lock)
+, hash ? (builtins.fromJSON (builtins.readFile ../flake.lock))
+          .nodes.nixpkgs.locked.rev
 }:
 
 let
   pkgs = import
     (fetchTarball {
-      url = "https://github.com/NixOS/nixpkgs/archive/${lock.nodes.nixpkgs.locked.rev}.tar.gz";
-      sha256 = lock.nodes.nixpkgs.locked.narHash;
+      url = "https://github.com/NixOS/nixpkgs/archive/${hash}.tar.gz";
     })
     { };
   compiler = pkgs.haskell.packages."${compilerVersion}";

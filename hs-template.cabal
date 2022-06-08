@@ -25,7 +25,7 @@ common common-exts
     BangPatterns
     ConstraintKinds
     DataKinds
-    DeriveDataTypeable
+    DeriveAnyClass
     DeriveFunctor
     DeriveGeneric
     DeriveTraversable

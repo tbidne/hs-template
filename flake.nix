@@ -25,6 +25,7 @@
               hlint
               ghcid
               ormolu
+              pkgs.gnumake
               pkgs.zlib
             ]);
         };

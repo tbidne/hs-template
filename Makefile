@@ -18,54 +18,61 @@ watch:
 
 # ci
 
-.PHONY: ci_ck
-ci_ck: format_ck lint_ck haddock_ck
+.PHONY: cic
+cic: formatc lintc haddockc
 
 .PHONY: ci
 ci: format lint
 
 # formatting
 
-.PHONY: format_ck
-format_ck: cabalfmt_ck hsformat_ck nixpkgsfmt_ck
+.PHONY: formatc
+formatc: cabalfmtc hsformatc nixpkgsfmtc
 
 .PHONY: format
 format: cabalfmt hsformat nixpkgsfmt
 
 .PHONY: hsformat
 hsformat:
-	nix run github:tbidne/nix-hs-tools/0.4#ormolu -- --mode inplace
+	nix run github:tbidne/nix-hs-tools/0.5#ormolu -- --mode inplace
 
-.PHONY: hsformat_ck
-hsformat_ck:
-	nix run github:tbidne/nix-hs-tools/0.4#ormolu -- --mode check
+.PHONY: hsformatc
+hsformatc:
+	nix run github:tbidne/nix-hs-tools/0.5#ormolu -- --mode check
 
 .PHONY: cabalfmt
 cabalfmt:
-	nix run github:tbidne/nix-hs-tools/0.4#cabal-fmt -- --inplace
+	nix run github:tbidne/nix-hs-tools/0.5#cabal-fmt -- --inplace
 
-.PHONY: cabalfmt_ck
-cabalfmt_ck:
-	nix run github:tbidne/nix-hs-tools/0.4#cabal-fmt -- --check
+.PHONY: cabalfmtc
+cabalfmtc:
+	nix run github:tbidne/nix-hs-tools/0.5#cabal-fmt -- --check
 
 .PHONY: nixpkgsfmt
 nixpkgsfmt:
-	nix run github:tbidne/nix-hs-tools/0.4#nixpkgs-fmt
+	nix run github:tbidne/nix-hs-tools/0.5#nixpkgs-fmt
 
-.PHONY: nixpkgsfmt_ck
-nixpkgsfmt_ck:
-	nix run github:tbidne/nix-hs-tools/0.4#nixpkgs-fmt -- --check
+.PHONY: nixpkgsfmtc
+nixpkgsfmtc:
+	nix run github:tbidne/nix-hs-tools/0.5#nixpkgs-fmt -- --check
 
 # linting
 
 .PHONY: lint
 lint:
-	nix run github:tbidne/nix-hs-tools/0.4#hlint -- --refact
+	nix run github:tbidne/nix-hs-tools/0.5#hlint -- --refact
 
-.PHONY: lint_ck
-lint_ck:
-	nix run github:tbidne/nix-hs-tools/0.4#hlint
+.PHONY: lintc
+lintc:
+	nix run github:tbidne/nix-hs-tools/0.5#hlint
 
-.PHONY: haddock_ck
-haddock_ck:
-	nix run github:tbidne/nix-hs-tools/0.4#haddock -- .
+.PHONY: haddock
+haddock:
+	cabal haddock --haddock-hyperlink-source --haddock-quickjump ;\
+	mkdir -p docs/ ;\
+	find docs/ -type f | xargs -I % sh -c "rm -r %" ;\
+	cp -r dist-newstyle/build/x86_64-linux/ghc-9.2.2/hs-template-0.1/doc/html/hs-template/* docs/
+
+.PHONY: haddockc
+haddockc:
+	nix run github:tbidne/nix-hs-tools/0.5#haddock -- .

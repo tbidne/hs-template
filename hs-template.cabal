@@ -6,7 +6,7 @@ license-file:       LICENSE
 tested-with:        GHC ==8.10.7 || ==9.0.2 || ==9.2.2
 copyright:          2022 Thomas Bidne
 author:             Thomas Bidne
-maintainer:         tbidne@prontonmail.com
+maintainer:         tbidne@protonmail.com
 homepage:           https://github.com/tbidne/hs-template/
 bug-reports:        https://github.com/tbidne/hs-template/issues
 synopsis:           Template

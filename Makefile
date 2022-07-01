@@ -4,6 +4,10 @@
 build:
 	cabal build all
 
+.PHONY: clean
+clean:
+	cabal clean
+
 .PHONY: test
 test:
 	cabal test
@@ -76,3 +80,8 @@ haddock:
 .PHONY: haddockc
 haddockc:
 	nix run github:tbidne/nix-hs-tools/0.5#haddock -- .
+
+.PHONY: hackage
+hackage:
+	cabal sdist ;\
+	cabal haddock --haddock-for-hackage --enable-doc

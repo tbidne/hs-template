@@ -10,7 +10,7 @@
     flake-utils.lib.eachDefaultSystem (system:
     let
       pkgs = import nixpkgs { inherit system; };
-      compilerVersion = "ghc922";
+      compilerVersion = "ghc923";
       compiler = pkgs.haskell.packages."${compilerVersion}";
       mkPkg = returnShellEnv:
         compiler.developPackage {
@@ -18,13 +18,11 @@
           name = "hs-template";
           root = ./.;
           modifier = drv:
+            # add tools like hlint, ormolu, ghci here if you want them
+            # on the PATH
             pkgs.haskell.lib.addBuildTools drv (with compiler; [
               cabal-install
-              cabal-plan
               haskell-language-server
-              hlint
-              ghcid
-              ormolu
               pkgs.gnumake
               pkgs.zlib
             ]);

@@ -1,10 +1,14 @@
 let
   compilerVersion = "ghc902";
-  lock = builtins.fromJSON (builtins.readFile ../flake.lock);
+
+  lockJson = builtins.fromJSON (builtins.readFile ../flake.lock);
+  nixpkgsKey = lockJson.nodes.root.inputs.nixpkgs;
+  hash = lockJson.nodes.${nixpkgsKey}.locked.rev;
+
   pkgs = import
     (fetchTarball {
-      url = "https://github.com/NixOS/nixpkgs/archive/${lock.nodes.nixpkgs.locked.rev}.tar.gz";
-      sha256 = lock.nodes.nixpkgs.locked.narHash;
+      url = "https://github.com/NixOS/nixpkgs/archive/${hash}.tar.gz";
+      sha256 = lockJson.nodes.${nixpkgsKey}.locked.narHash;
     })
     { };
   compiler = pkgs.haskell.packages."${compilerVersion}";

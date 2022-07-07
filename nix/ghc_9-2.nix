@@ -1,1 +1,1 @@
-import ./ghc_base.nix { compilerVersion = "ghc922"; }
+import ./ghc_base.nix { compilerVersion = "ghc923"; }

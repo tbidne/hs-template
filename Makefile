@@ -84,6 +84,7 @@ lint:
 lintc:
 	nix run github:tbidne/nix-hs-tools/0.6#hlint
 
+# generate docs for main package, copy to docs/
 .PHONY: haddock
 haddock:
 	cabal haddock --haddock-hyperlink-source --haddock-quickjump ;\
@@ -95,6 +96,7 @@ haddock:
 haddockc:
 	nix run github:tbidne/nix-hs-tools/0.6#haddock-cov -- .
 
+# generate dist and docs suitable for hackage
 .PHONY: hackage
 hackage:
 	cabal sdist ;\

@@ -6,12 +6,15 @@
 [![MIT](https://img.shields.io/github/license/tbidne/hs-template?color=blue)](https://opensource.org/licenses/MIT)
 
 [![nix](https://img.shields.io/github/workflow/status/tbidne/hs-template/nix/main?label=nix%209.2&&logo=nixos&logoColor=85c5e7&labelColor=2f353c)](https://github.com/tbidne/hs-template/actions/workflows/nix_ci.yaml)
-[![stack](https://img.shields.io/github/workflow/status/tbidne/hs-template/stack/main?label=stack%2019&logoColor=white&labelColor=2f353c)](https://github.com/tbidne/hs-template/actions/workflows/stack_ci.yaml)
 [![style](https://img.shields.io/github/workflow/status/tbidne/hs-template/style/main?label=style&logoColor=white&labelColor=2f353c)](https://github.com/tbidne/hs-template/actions/workflows/style_ci.yaml)
 
-[![8.10](https://img.shields.io/github/workflow/status/tbidne/hs-template/8.10/main?label=8.10&logo=haskell&logoColor=655889&labelColor=2f353c)](https://github.com/tbidne/hs-template/actions/workflows/ghc_8-10.yaml)
-[![9.0](https://img.shields.io/github/workflow/status/tbidne/hs-template/9.0/main?label=9.0&logo=haskell&logoColor=655889&labelColor=2f353c)](https://github.com/tbidne/hs-template/actions/workflows/ghc_9-0.yaml)
-[![9.2](https://img.shields.io/github/workflow/status/tbidne/hs-template/9.2/main?label=9.2&logo=haskell&logoColor=655889&labelColor=2f353c)](https://github.com/tbidne/hs-template/actions/workflows/ghc_9-2.yaml)
+[![cabal 8.10](https://img.shields.io/github/workflow/status/tbidne/hs-template/cabal_8-10/main?label=8.10&logo=haskell&logoColor=655889&labelColor=2f353c)](https://github.com/tbidne/hs-template/actions/workflows/cabal_8-10.yaml)
+[![cabal 9.0](https://img.shields.io/github/workflow/status/tbidne/hs-template/cabal_9-0/main?label=9.0&logo=haskell&logoColor=655889&labelColor=2f353c)](https://github.com/tbidne/hs-template/actions/workflows/cabal_9-0.yaml)
+[![cabal 9.2](https://img.shields.io/github/workflow/status/tbidne/hs-template/cabal_9-2/main?label=9.2&logo=haskell&logoColor=655889&labelColor=2f353c)](https://github.com/tbidne/hs-template/actions/workflows/cabal_9-2.yaml)
+
+[![stack lts-18](https://img.shields.io/github/workflow/status/tbidne/hs-template/stack_lts-18/main?label=stack%20lts-18&logoColor=white&labelColor=2f353c)](https://github.com/tbidne/hs-template/actions/workflows/stack_lts-18.yaml)
+[![stack lts-19](https://img.shields.io/github/workflow/status/tbidne/hs-template/stack_lts-19/main?label=stack%20lts-19&logoColor=white&labelColor=2f353c)](https://github.com/tbidne/hs-template/actions/workflows/stack_lts-19.yaml)
+[![stack nightly](https://img.shields.io/github/workflow/status/tbidne/hs-template/stack_nightly/main?label=stack%20nightly&logoColor=white&labelColor=2f353c)](https://github.com/tbidne/hs-template/actions/workflows/stack_nightly.yaml)
 
 </div>
 
@@ -61,12 +64,12 @@
 ## CI
 
 * `.github/workflows/`: Several github actions are defined that verify:
-  * Build / Tests with multiple ghc versions with `cabal`.
-  * Build / Tests with `stack` on the latest LTS.
+  * Build / Tests with `cabal` and multiple ghc versions.
+  * Build / Tests with `stack` and multiple snapshots.
   * Build / Test with nix directly (i.e. `nix build`).
   * Linting (e.g. formatting).
 
-* `nix/`: This directory contains minimal nix shell files used for the CI jobs e.g. one action will load a nix shell with `nix/ghc_X-Y.nix` and test building with `ghc_X-Y`. The `stack.nix` file is not currently used for CI, as there is a stack-specific action. It exists to make it easier for non-stack users to keep update the lock file (i.e. `nix-shell nix/stack.nix && rm stack.yaml.lock && stack build`).
+* `nix/`: This directory contains minimal nix shell files used for the CI jobs e.g. one action will load a nix shell with `nix/tool_X-Y.nix` and test `tool` with `ghc_X-Y`.
 
 ## Misc
 

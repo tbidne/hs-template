@@ -1,4 +1,4 @@
-name: "9.0"
+name: "cabal_9-0"
 
 on:
   push:
@@ -24,6 +24,6 @@ jobs:
 
       - name: Compile
         run: |
-          nix-shell nix/ghc_9-0.nix --command \
+          nix-shell nix/cabal_9-0.nix --command \
             "cabal update && \
              cabal build --write-ghc-environment-files=always"

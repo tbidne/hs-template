@@ -1,4 +1,4 @@
-name: "9.2"
+name: "stack_lts-19"
 
 on:
   push:
@@ -12,7 +12,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  cabal_9-2:
+  stack_lts-19:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -24,6 +24,10 @@ jobs:
 
       - name: Compile
         run: |
-          nix-shell nix/ghc_9-2.nix --command \
-            "cabal update && \
-             cabal build --write-ghc-environment-files=always"
+          nix-shell nix/stack_lts-19.nix --command \
+            "stack update && stack build --ghc-options -Werror"
+      
+      - name: Test
+        run: |
+          nix-shell nix/stack_lts-19.nix --command \
+            "stack update && stack test --ghc-options -Werror"

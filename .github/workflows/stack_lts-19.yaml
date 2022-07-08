@@ -25,9 +25,9 @@ jobs:
       - name: Compile
         run: |
           nix-shell nix/stack_lts-19.nix --command \
-            "stack update && stack build --ghc-options -Werror"
-      
+            "stack update && stack build --nix --ghc-options -Werror"
+
       - name: Test
         run: |
           nix-shell nix/stack_lts-19.nix --command \
-            "stack update && stack test --ghc-options -Werror"
+            "stack update && stack test --nix --ghc-options -Werror"

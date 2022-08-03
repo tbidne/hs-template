@@ -1,1 +1,1 @@
-import ./cabal_base.nix { compilerVersion = "ghc902"; }
+import ./cabal_base.nix { ghc-version = "ghc902"; }

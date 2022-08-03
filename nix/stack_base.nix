@@ -1,23 +1,14 @@
-{ compilerVersion
-, stackYaml
+{ ghc-version
+, stack-yaml
 , hash ? null
 }:
 
-let
-  pkgs = (import ./lib.nix).get-pkgs hash;
-  compiler = pkgs.haskell.packages."${compilerVersion}";
-in
-pkgs.haskell.lib.buildStackProject {
+(import ./lib.nix).nix-hs-shells.stack-shell {
+  inherit
+    ghc-version
+    stack-yaml
+    hash;
+
   name = "hs-template";
-
-  buildInputs = with pkgs; [
-    git
-    stack
-    zlib.dev
-    zlib.out
-  ];
-
-  ghc = compiler.ghc;
-
-  STACK_YAML = stackYaml;
+  flake-path = ../flake.lock;
 }

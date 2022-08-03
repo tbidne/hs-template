@@ -1,4 +1,4 @@
 import ./stack_base.nix {
-  compilerVersion = "ghc902";
-  stackYaml = "stack.yaml";
+  ghc-version = "ghc902";
+  stack-yaml = "stack.yaml";
 }

@@ -69,7 +69,7 @@
   * Build / Test with nix directly (i.e. `nix build`).
   * Linting (e.g. formatting).
 
-* `nix/`: This directory contains minimal nix shell files used for the CI jobs e.g. one action will load a nix shell with `nix/tool_X-Y.nix` and test `tool` with `ghc_X-Y`.
+* `nix/`: This directory contains minimal nix shell files used for the CI jobs e.g. one action will load a nix shell with `nix/tool_version.nix` and test `tool` with `version`.
 
 ## Misc
 

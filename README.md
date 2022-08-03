@@ -6,15 +6,9 @@
 [![MIT](https://img.shields.io/github/license/tbidne/hs-template?color=blue)](https://opensource.org/licenses/MIT)
 
 [![nix](https://img.shields.io/github/workflow/status/tbidne/hs-template/nix/main?label=nix%209.2&&logo=nixos&logoColor=85c5e7&labelColor=2f353c)](https://github.com/tbidne/hs-template/actions/workflows/nix_ci.yaml)
+[![cabal](https://img.shields.io/github/workflow/status/tbidne/hs-template/cabal/action-test?label=cabal&logo=haskell&logoColor=655889&labelColor=2f353c)](https://github.com/tbidne/hs-template/actions/workflows/cabal.yaml)
+[![stack](https://img.shields.io/github/workflow/status/tbidne/hs-template/stack/main?label=stack&logoColor=white&labelColor=2f353c)](https://github.com/tbidne/hs-template/actions/workflows/stack_lts-18.yaml)
 [![style](https://img.shields.io/github/workflow/status/tbidne/hs-template/style/main?label=style&logoColor=white&labelColor=2f353c)](https://github.com/tbidne/hs-template/actions/workflows/style_ci.yaml)
-
-[![cabal 8.10](https://img.shields.io/github/workflow/status/tbidne/hs-template/cabal_8-10/main?label=8.10&logo=haskell&logoColor=655889&labelColor=2f353c)](https://github.com/tbidne/hs-template/actions/workflows/cabal_8-10.yaml)
-[![cabal 9.0](https://img.shields.io/github/workflow/status/tbidne/hs-template/cabal_9-0/main?label=9.0&logo=haskell&logoColor=655889&labelColor=2f353c)](https://github.com/tbidne/hs-template/actions/workflows/cabal_9-0.yaml)
-[![cabal 9.2](https://img.shields.io/github/workflow/status/tbidne/hs-template/cabal_9-2/main?label=9.2&logo=haskell&logoColor=655889&labelColor=2f353c)](https://github.com/tbidne/hs-template/actions/workflows/cabal_9-2.yaml)
-
-[![stack lts-18](https://img.shields.io/github/workflow/status/tbidne/hs-template/stack_lts-18/main?label=stack%20lts-18&logoColor=white&labelColor=2f353c)](https://github.com/tbidne/hs-template/actions/workflows/stack_lts-18.yaml)
-[![stack lts-19](https://img.shields.io/github/workflow/status/tbidne/hs-template/stack_lts-19/main?label=stack%20lts-19&logoColor=white&labelColor=2f353c)](https://github.com/tbidne/hs-template/actions/workflows/stack_lts-19.yaml)
-[![stack nightly](https://img.shields.io/github/workflow/status/tbidne/hs-template/stack_nightly/main?label=stack%20nightly&logoColor=white&labelColor=2f353c)](https://github.com/tbidne/hs-template/actions/workflows/stack_nightly.yaml)
 
 </div>
 
@@ -55,11 +49,13 @@
 ### HS Misc
 
 * `hie.yaml`: This file helps with IDE integration via the `haskell-language-server`.
-* `CHANGELOG.md`: Changelog.
+* `CHANGELOG.md`
 
 ## Nix
 
 * `flake.nix / flake.lock`: For `nix` users. A nix shell can be entered with `nix develop` that will give the tools necessary for haskell development with `cabal`. Cabal can be traded for `stack` if desired.
+
+* `nix/`: Contains a `stack.nix` file that allows one to load a shell with `stack` and `ghc`.
 
 ## CI
 
@@ -68,8 +64,6 @@
   * Build / Tests with `stack` and multiple snapshots.
   * Build / Test with nix directly (i.e. `nix build`).
   * Linting (e.g. formatting).
-
-* `nix/`: This directory contains minimal nix shell files used for the CI jobs e.g. one action will load a nix shell with `nix/tool_version.nix` and test `tool` with `version`.
 
 ## Misc
 

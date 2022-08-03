@@ -1,36 +1,47 @@
 {
   description = "A Template for Haskell Packages";
-  inputs.nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+  inputs.flake-compat = {
+    url = "github:edolstra/flake-compat";
+    flake = false;
+  };
   inputs.flake-utils.url = "github:numtide/flake-utils";
+  inputs.nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
   outputs =
-    { flake-utils
+    { flake-compat
+    , flake-utils
     , nixpkgs
     , self
     }:
     flake-utils.lib.eachDefaultSystem (system:
     let
       pkgs = import nixpkgs { inherit system; };
-      compilerVersion = "ghc923";
-      compiler = pkgs.haskell.packages."${compilerVersion}";
-      mkPkg = returnShellEnv:
+      buildTools = c: with c; [
+        cabal-install
+        pkgs.gnumake
+        pkgs.zlib
+      ];
+      # add tools like hlint, ormolu, ghcid here if you want them
+      # on the PATH
+      devTools = c: with c; [
+        haskell-language-server
+      ];
+      ghc-version = "ghc923";
+      compiler = pkgs.haskell.packages."${ghc-version}";
+      mkPkg = returnShellEnv: withDevTools:
         compiler.developPackage {
           inherit returnShellEnv;
           name = "hs-template";
           root = ./.;
           modifier = drv:
-            # add tools like hlint, ormolu, ghci here if you want them
-            # on the PATH
-            pkgs.haskell.lib.addBuildTools drv (with compiler; [
-              cabal-install
-              haskell-language-server
-              pkgs.gnumake
-              pkgs.zlib
-            ]);
+            pkgs.haskell.lib.addBuildTools drv
+              (buildTools compiler ++
+                (if withDevTools then devTools compiler else [ ]));
         };
     in
     {
-      packages.default = mkPkg false;
+      packages.default = mkPkg false false;
 
-      devShell = mkPkg true;
+      devShells.default = mkPkg true true;
+      devShells.ci = mkPkg true false;
     });
 }

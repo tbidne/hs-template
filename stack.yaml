@@ -8,4 +8,4 @@ ghc-options:
     -Wmissing-home-modules -Wmissing-export-lists -Wpartial-fields
     -Wredundant-constraints -Wunused-packages -Wmissing-deriving-strategies
 nix:
-  shell-file: nix/stack_lts-19.nix
+  shell-file: nix/stack.nix

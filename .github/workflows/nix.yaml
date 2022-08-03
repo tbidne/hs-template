@@ -1,4 +1,4 @@
-name: "cabal_9-0"
+name: nix
 
 on:
   push:
@@ -12,7 +12,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  cabal_9-0:
+  nix:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3.0.2
@@ -24,8 +24,12 @@ jobs:
           extra_nix_config: |
             access-tokens = github.com=${{ secrets.GITHUB_TOKEN }}
 
-      - name: Compile
+      - name: Compile & Test
         run: |
-          nix-shell nix/cabal_9-0.nix --command \
-            "cabal update && \
-             cabal build --write-ghc-environment-files=always"
+          nix build
+          if [ -d "./result/lib" ]; then
+            echo "Build succeeded"
+          else
+            echo "Build failed"
+            exit -1
+          fi

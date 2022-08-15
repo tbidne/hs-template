@@ -23,6 +23,7 @@
       # add tools like hlint, ormolu, ghcid here if you want them
       # on the PATH
       devTools = c: with c; [
+        ghcid
         haskell-language-server
       ];
       ghc-version = "ghc923";

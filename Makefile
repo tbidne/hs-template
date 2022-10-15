@@ -1,3 +1,5 @@
+.PHONY: build clean test repl watch cic ci formatc format lint lintc haddock haddockc hackage
+
 # core
 
 ARGS = ""
@@ -44,43 +46,21 @@ ci: lint format
 
 # formatting
 
-.PHONY: formatc
-formatc: cabalfmtc hsformatc nixpkgsfmtc
-
-.PHONY: format
-format: cabalfmt hsformat nixpkgsfmt
-
-.PHONY: hsformat
-hsformat:
-	nix run github:tbidne/nix-hs-tools/0.6.1#ormolu -- --mode inplace
-
-.PHONY: hsformatc
-hsformatc:
-	nix run github:tbidne/nix-hs-tools/0.6.1#ormolu -- --mode check
-
-.PHONY: cabalfmt
-cabalfmt:
-	nix run github:tbidne/nix-hs-tools/0.6.1#cabal-fmt -- --inplace
-
-.PHONY: cabalfmtc
-cabalfmtc:
-	nix run github:tbidne/nix-hs-tools/0.6.1#cabal-fmt -- --check
-
-.PHONY: nixpkgsfmt
-nixpkgsfmt:
-	nix run github:tbidne/nix-hs-tools/0.6.1#nixpkgs-fmt
-
-.PHONY: nixpkgsfmtc
-nixpkgsfmtc:
+formatc:
+	nix run github:tbidne/nix-hs-tools/0.6.1#cabal-fmt -- --check ;\
+	nix run github:tbidne/nix-hs-tools/0.6.1#ormolu -- --mode check ;\
 	nix run github:tbidne/nix-hs-tools/0.6.1#nixpkgs-fmt -- --check
+
+format:
+	nix run github:tbidne/nix-hs-tools/0.6.1#cabal-fmt -- --inplace ;\
+	nix run github:tbidne/nix-hs-tools/0.6.1#ormolu -- --mode inplace ;\
+	nix run github:tbidne/nix-hs-tools/0.6.1#nixpkgs-fmt
 
 # linting
 
-.PHONY: lint
 lint:
 	nix run github:tbidne/nix-hs-tools/0.6.1#hlint -- --refact
 
-.PHONY: lintc
 lintc:
 	nix run github:tbidne/nix-hs-tools/0.6.1#hlint
 

@@ -1,4 +1,4 @@
-resolver: nightly-2022-07-07
+resolver: nightly-2022-10-11
 packages:
 - .
 ghc-options:
@@ -7,3 +7,6 @@ ghc-options:
     -Wincomplete-record-updates -Wincomplete-uni-patterns
     -Wmissing-home-modules -Wmissing-export-lists -Wpartial-fields
     -Wredundant-constraints -Wunused-packages -Wmissing-deriving-strategies
+nix:
+  shell-file: nix/stack.nix
+  nix-shell-options: [--argstr, stack-vers, nightly]

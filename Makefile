@@ -1,4 +1,5 @@
-.PHONY: build clean test repl watch cic ci formatc format lint lintc haddock haddockc hackage
+.PHONY: build clean test repl watch cic ci formatc format lint lintc \
+	haddock haddockc hackage
 
 # core
 

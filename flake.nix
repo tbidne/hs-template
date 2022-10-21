@@ -26,7 +26,7 @@
         ghcid
         haskell-language-server
       ];
-      ghc-version = "ghc924";
+      ghc-version = "ghc942";
       compiler = pkgs.haskell.packages."${ghc-version}";
       mkPkg = returnShellEnv: withDevTools:
         compiler.developPackage {

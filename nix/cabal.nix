@@ -10,9 +10,11 @@ let
   ];
 in
 pkgs.mkShell {
-  buildInputs =
+  buildInputs = with pkgs;
     [
-      pkgs.cabal-install
+      cabal-install
       compiler.ghc
+      zlib.dev
+      zlib.out
     ] ++ (if dev then dev-tools else [ ]);
 }

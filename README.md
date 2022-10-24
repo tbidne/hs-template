@@ -56,7 +56,8 @@
 
 * `flake.nix / flake.lock`: For `nix` users. A nix shell can be entered with `nix develop` that will give the tools necessary for haskell development with `cabal`. Cabal can be traded for `stack` if desired.
 
-* `nix/`: Contains a `stack.nix` file that allows one to load a shell with `stack` and `ghc`.
+* `nix/cabal.nix`: Minimal nix setup, just `cabal`, `ghc`, and optional dev tools. Useful for testing specific ghc versions.
+* `nix/stack.nix`: Allows one to load a shell with `stack` and `ghc`.
 
 ## CI
 

@@ -1,11 +1,12 @@
-.PHONY: build clean test repl watch cic ci formatc format lint lintc \
-	haddock haddockc hackage
+.PHONY: build clean repl watch ;\
+	test ;\
+	cic ci formatc format lint lintc haddockc ;\
+	haddock hackage
 
 # core
 
 ARGS = ""
 
-.PHONY: build
 build:
 	if [ -z "$(ARGS)" ]; then \
 		cabal build; \
@@ -13,11 +14,9 @@ build:
 		cabal build $(ARGS); \
 	fi
 
-.PHONY: clean
 clean:
 	cabal clean
 
-.PHONY: test
 test:
 	if [ -z "$(ARGS)" ]; then \
 		cabal test; \
@@ -25,59 +24,56 @@ test:
 		cabal test $(ARGS); \
 	fi
 
-.PHONY: repl
 repl:
 	if [ -z "$(ARGS)" ]; then \
-		cabal repl; \
+		cabal repl hs-template; \
 	else \
 		cabal repl $(ARGS); \
 	fi
 
-.PHONY: watch
 watch:
-	ghcid --command "cabal repl $(ARGS)"
+	if [ -z "$(ARGS)" ]; then \
+		ghcid --command "cabal repl hs-template"; \
+	else \
+		ghcid --command "cabal repl $(ARGS)"; \
+	fi
 
 # ci
 
-.PHONY: cic
 cic: formatc lintc haddockc
 
-.PHONY: ci
 ci: lint format
 
 # formatting
 
 formatc:
-	nix run github:tbidne/nix-hs-tools/0.6.1#cabal-fmt -- --check ;\
-	nix run github:tbidne/nix-hs-tools/0.6.1#ormolu -- --mode check ;\
-	nix run github:tbidne/nix-hs-tools/0.6.1#nixpkgs-fmt -- --check
+	nix run github:tbidne/nix-hs-tools/0.7#cabal-fmt -- --check ;\
+	nix run github:tbidne/nix-hs-tools/0.7#ormolu -- --mode check ;\
+	nix run github:tbidne/nix-hs-tools/0.7#nixpkgs-fmt -- --check
 
 format:
-	nix run github:tbidne/nix-hs-tools/0.6.1#cabal-fmt -- --inplace ;\
-	nix run github:tbidne/nix-hs-tools/0.6.1#ormolu -- --mode inplace ;\
-	nix run github:tbidne/nix-hs-tools/0.6.1#nixpkgs-fmt
+	nix run github:tbidne/nix-hs-tools/0.7#cabal-fmt -- --inplace ;\
+	nix run github:tbidne/nix-hs-tools/0.7#ormolu -- --mode inplace ;\
+	nix run github:tbidne/nix-hs-tools/0.7#nixpkgs-fmt
 
 # linting
 
 lint:
-	nix run github:tbidne/nix-hs-tools/0.6.1#hlint -- --refact
+	nix run github:tbidne/nix-hs-tools/0.7#hlint -- --refact
 
 lintc:
-	nix run github:tbidne/nix-hs-tools/0.6.1#hlint
+	nix run github:tbidne/nix-hs-tools/0.7#hlint
 
 # generate docs for main package, copy to docs/
-.PHONY: haddock
 haddock:
 	cabal haddock --haddock-hyperlink-source --haddock-quickjump ;\
 	mkdir -p docs/ ;\
 	find docs/ -type f | xargs -I % sh -c "rm -r %" ;\
-	cp -r dist-newstyle/build/x86_64-linux/ghc-9.2.3/hs-template-0.1/opt/doc/html/hs-template/* docs/
+	cp -r dist-newstyle/build/x86_64-linux/ghc-9.2.4/hs-template-0.1/opt/doc/html/hs-template/* docs/
 
-.PHONY: haddockc
 haddockc:
-	nix run github:tbidne/nix-hs-tools/0.6.1#haddock-cov -- .
+	nix run github:tbidne/nix-hs-tools/0.7#haddock-cov -- .
 
-# generate dist and docs suitable for hackage
 .PHONY: hackage
 hackage:
 	cabal sdist ;\

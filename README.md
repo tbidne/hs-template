@@ -73,14 +73,16 @@
 
     ```Makefile
     # from
-    .PHONY: hsformat
-    hsformat:
-    	nix run github:tbidne/nix-hs-tools/0.6#ormolu -- --mode inplace
+    formatc:
+      nix run github:tbidne/nix-hs-tools/0.7#cabal-fmt -- --check ;\
+      nix run github:tbidne/nix-hs-tools/0.7#ormolu -- --mode check ;\
+      nix run github:tbidne/nix-hs-tools/0.7#nixpkgs-fmt -- --check
 
     # to
-    .PHONY: hsformat
-    hsformat:
-    	ormolu -- --mode inplace
+    formatc:
+      cabal-fmt --check hs-template.cabal ;\
+      find . -type f -name '*.hs' | xargs ormolu --mode check
+      nixpkgs-fmt . --check
     ```
 
     And of course they can be deleted/swapped out as desired.

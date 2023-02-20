@@ -47,22 +47,22 @@ ci: lint format
 # formatting
 
 formatc:
-	nix run github:tbidne/nix-hs-tools/0.7#cabal-fmt -- --check ;\
-	nix run github:tbidne/nix-hs-tools/0.7#ormolu -- --mode check ;\
-	nix run github:tbidne/nix-hs-tools/0.7#nixpkgs-fmt -- --check
+	nix run github:tbidne/nix-hs-tools/0.8#cabal-fmt -- --check ;\
+	nix run github:tbidne/nix-hs-tools/0.8#ormolu -- --mode check ;\
+	nix run github:tbidne/nix-hs-tools/0.8#nixpkgs-fmt -- --check
 
 format:
-	nix run github:tbidne/nix-hs-tools/0.7#cabal-fmt -- --inplace ;\
-	nix run github:tbidne/nix-hs-tools/0.7#ormolu -- --mode inplace ;\
-	nix run github:tbidne/nix-hs-tools/0.7#nixpkgs-fmt
+	nix run github:tbidne/nix-hs-tools/0.8#cabal-fmt -- --inplace ;\
+	nix run github:tbidne/nix-hs-tools/0.8#ormolu -- --mode inplace ;\
+	nix run github:tbidne/nix-hs-tools/0.8#nixpkgs-fmt
 
 # linting
 
 lint:
-	nix run github:tbidne/nix-hs-tools/0.7#hlint -- --refact
+	nix run github:tbidne/nix-hs-tools/0.8#hlint -- --refact
 
 lintc:
-	nix run github:tbidne/nix-hs-tools/0.7#hlint
+	nix run github:tbidne/nix-hs-tools/0.8#hlint
 
 # generate docs for main package, copy to docs/
 haddock:
@@ -72,7 +72,7 @@ haddock:
 	cp -r dist-newstyle/build/x86_64-linux/ghc-9.2.4/hs-template-0.1/opt/doc/html/hs-template/* docs/
 
 haddockc:
-	nix run github:tbidne/nix-hs-tools/0.7#haddock-cov -- .
+	nix run github:tbidne/nix-hs-tools/0.8#haddock-cov -- .
 
 .PHONY: hackage
 hackage:

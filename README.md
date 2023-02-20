@@ -65,9 +65,9 @@
     ```Makefile
     # from
     formatc:
-      nix run github:tbidne/nix-hs-tools/0.7#cabal-fmt -- --check ;\
-      nix run github:tbidne/nix-hs-tools/0.7#ormolu -- --mode check ;\
-      nix run github:tbidne/nix-hs-tools/0.7#nixpkgs-fmt -- --check
+      nix run github:tbidne/nix-hs-tools/0.8#cabal-fmt -- --check ;\
+      nix run github:tbidne/nix-hs-tools/0.8#ormolu -- --mode check ;\
+      nix run github:tbidne/nix-hs-tools/0.8#nixpkgs-fmt -- --check
 
     # to
     formatc:

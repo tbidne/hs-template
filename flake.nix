@@ -27,22 +27,20 @@
           ];
           ghc-version = "ghc944";
           compiler = pkgs.haskell.packages."${ghc-version}";
-          mkPkg = returnShellEnv: withDevTools:
+          mkPkg = returnShellEnv:
             compiler.developPackage {
               inherit returnShellEnv;
               name = "hs-template";
               root = ./.;
               modifier = drv:
                 pkgs.haskell.lib.addBuildTools drv
-                  (buildTools compiler ++
-                    (if withDevTools then devTools compiler else [ ]));
+                  (buildTools compiler ++ devTools compiler);
             };
         in
         {
-          packages.default = mkPkg false false;
+          packages.default = mkPkg false;
 
-          devShells.default = mkPkg true true;
-          devShells.ci = mkPkg true false;
+          devShells.default = mkPkg true;
         };
       systems = [
         "x86_64-linux"

@@ -49,7 +49,7 @@
 
 * `flake.nix / flake.lock`: For `nix` users. A nix shell can be entered with `nix develop` that will give the tools necessary for haskell development with `cabal`.
 
-* `nix/cabal.nix`: Minimal nix setup, just `cabal`, `ghc`, and optional dev tools. Useful for testing specific ghc versions.
+* For a minimal nix setup (i.e. no flakes), see https://github.com/tbidne/nix-hs-shells. The default setup can be used as a basic nix shell.
 
 ## CI
 

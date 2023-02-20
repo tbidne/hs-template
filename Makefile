@@ -1,41 +1,33 @@
 .PHONY: build clean repl watch ;\
-	test ;\
 	cic ci formatc format lint lintc haddockc ;\
 	haddock hackage
 
 # core
 
-ARGS = ""
+T = ""
 
 build:
-	if [ -z "$(ARGS)" ]; then \
+	if [ -z "$(T)" ]; then \
 		cabal build; \
 	else \
-		cabal build $(ARGS); \
+		cabal build $(T); \
 	fi
 
 clean:
 	cabal clean
 
-test:
-	if [ -z "$(ARGS)" ]; then \
-		cabal test; \
-	else \
-		cabal test $(ARGS); \
-	fi
-
 repl:
-	if [ -z "$(ARGS)" ]; then \
+	if [ -z "$(T)" ]; then \
 		cabal repl hs-template; \
 	else \
-		cabal repl $(ARGS); \
+		cabal repl $(T); \
 	fi
 
 watch:
-	if [ -z "$(ARGS)" ]; then \
+	if [ -z "$(T)" ]; then \
 		ghcid --command "cabal repl hs-template"; \
 	else \
-		ghcid --command "cabal repl $(ARGS)"; \
+		ghcid --command "cabal repl $(T)"; \
 	fi
 
 # ci

@@ -3,7 +3,7 @@
 # hs-template
 
 [![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/tbidne/hs-template?include_prereleases&sort=semver)](https://github.com/tbidne/hs-template/releases/)
-![haskell](https://img.shields.io/static/v1?label=&message=9.4&logo=haskell&logoColor=655889&labelColor=2f353e&color=655889)
+![haskell](https://img.shields.io/static/v1?label=&message=9.6&logo=haskell&logoColor=655889&labelColor=2f353e&color=655889)
 [![MIT](https://img.shields.io/github/license/tbidne/hs-template?color=blue)](https://opensource.org/licenses/MIT)
 
 [![nix](http://img.shields.io/github/actions/workflow/status/tbidne/hs-template/nix.yaml?branch=main&label=nix&logo=nixos&logoColor=85c5e7&labelColor=2f353c)](https://github.com/tbidne/hs-template/actions/workflows/nix.yaml)

@@ -39,22 +39,22 @@ ci: lint format
 # formatting
 
 formatc:
-	nix run github:tbidne/nix-hs-tools/0.8#cabal-fmt -- --check ;\
-	nix run github:tbidne/nix-hs-tools/0.8#ormolu -- --mode check ;\
-	nix run github:tbidne/nix-hs-tools/0.8#nixpkgs-fmt -- --check
+	nixpkgs-fmt --check ;\
+	cabal-fmt --check ;\
+	ormolu --mode check
 
 format:
-	nix run github:tbidne/nix-hs-tools/0.8#cabal-fmt -- --inplace ;\
-	nix run github:tbidne/nix-hs-tools/0.8#ormolu -- --mode inplace ;\
-	nix run github:tbidne/nix-hs-tools/0.8#nixpkgs-fmt
+	cabal-fmt --inplace ;\
+	ormolu -i ;\
+	nixpkgs-fmt
 
 # linting
 
 lint:
-	nix run github:tbidne/nix-hs-tools/0.8#hlint -- --refact
+	hlint --refact
 
 lintc:
-	nix run github:tbidne/nix-hs-tools/0.8#hlint
+	hlint
 
 # generate docs for main package, copy to docs/
 haddock:

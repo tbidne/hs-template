@@ -23,6 +23,7 @@
           devTools = c: [
             (hlib.dontCheck c.ghcid)
             (hlib.dontCheck c.haskell-language-server)
+            (hlib.dontCheck c.hlint)
           ];
           hlib = pkgs.haskell.lib;
           ghc-version = "ghc944";
@@ -40,7 +41,6 @@
         in
         {
           packages.default = mkPkg false;
-
           devShells.default = mkPkg true;
         };
       systems = [

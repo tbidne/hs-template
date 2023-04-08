@@ -60,20 +60,4 @@
 
 ## Misc
 
-* `Makefile`: A makefile that provides useful shortcuts for cabal commands. For example, the most common `cabal` commands are provided, along with multiple formatters/linters. The formatting/linting uses tools from https://github.com/tbidne/nix-hs-tools and requires nix. If this is not desired, they can be changed to use the tool directly e.g.
-
-    ```Makefile
-    # from
-    formatc:
-      nix run github:tbidne/nix-hs-tools/0.8#cabal-fmt -- --check ;\
-      nix run github:tbidne/nix-hs-tools/0.8#ormolu -- --mode check ;\
-      nix run github:tbidne/nix-hs-tools/0.8#nixpkgs-fmt -- --check
-
-    # to
-    formatc:
-      cabal-fmt --check hs-template.cabal ;\
-      find . -type f -name '*.hs' | xargs ormolu --mode check
-      nixpkgs-fmt . --check
-    ```
-
-    And of course they can be deleted/swapped out as desired.
+* `Makefile`: A makefile that provides useful shortcuts for cabal commands. For example, the most common `cabal` commands are provided, along with multiple formatters/linters.

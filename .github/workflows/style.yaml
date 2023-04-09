@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main
+      - no-nix-tools
 
   pull_request:
     branches:
@@ -29,3 +30,9 @@ jobs:
 
       - name: HLint
         run: nix develop .#ci -c bash -c "make lintc"
+
+      - name: Formatting 2
+        run: nix develop -c bash -c "make formatc"
+
+      - name: HLint 2
+        run: nix develop -c bash -c "make lintc"

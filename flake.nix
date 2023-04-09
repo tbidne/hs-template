@@ -28,7 +28,7 @@
             (hlib.dontCheck c.cabal-fmt)
             (hlib.dontCheck c.hlint)
             (hlib.dontCheck c.ormolu)
-            (hlib.dontCheck pkgs.nixpkgs-fmt)
+            pkgs.nixpkgs-fmt
           ];
           hlib = pkgs.haskell.lib;
           ghc-version = "ghc944";

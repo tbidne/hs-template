@@ -38,23 +38,37 @@ ci: lint format
 
 # formatting
 
+EXCLUDE_BUILD := ! -path "./.*" ! -path "./*dist-newstyle/*" ! -path "./*stack-work/*"
+FIND_HS := find . -type f -name "*hs" $(EXCLUDE_BUILD)
+FIND_CABAL := find . -type f -name "*.cabal" $(EXCLUDE_BUILD)
+NIX_FMT := nixpkgs-fmt
+ORMOLU := find . -type f -name "*hs"
+
+
 formatc:
-	nixpkgs-fmt --check ;\
-	cabal-fmt --check ;\
-	ormolu --mode check
+	nixpkgs-fmt ./ --check && \
+	$(FIND_CABAL) | xargs cabal-fmt --check && \
+	$(FIND_HS) | xargs ormolu --mode check
 
 format:
-	cabal-fmt --inplace ;\
-	ormolu -i ;\
-	nixpkgs-fmt
+	nixpkgs-fmt ./ && \
+	$(FIND_CABAL) | xargs cabal-fmt --inplace && \
+	$(FIND_HS) | xargs ormolu -i
 
 # linting
 
 lint:
-	hlint --refact
+	$(FIND_HS) | xargs -I % sh -c " \
+		hlint \
+		--ignore-glob=dist-newstyle \
+		--ignore-glob=stack-work \
+		--refactor \
+		--with-refactor=refactor \
+		--refactor-options=-i \
+		%"
 
 lintc:
-	hlint
+	hlint . --ignore-glob=dist-newstyle --ignore-glob=stack-work 
 
 # generate docs for main package, copy to docs/
 haddock:

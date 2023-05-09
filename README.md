@@ -3,8 +3,8 @@
 # hs-template
 
 [![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/tbidne/hs-template?include_prereleases&sort=semver)](https://github.com/tbidne/hs-template/releases/)
-[![MIT](https://img.shields.io/github/license/tbidne/hs-template?color=blue)](https://opensource.org/licenses/MIT)
 [![ci](http://img.shields.io/github/actions/workflow/status/tbidne/hs-template/ci.yaml?branch=main)](https://github.com/tbidne/hs-template/actions/workflows/ci.yaml)
+[![MIT](https://img.shields.io/github/license/tbidne/hs-template?color=blue)](https://opensource.org/licenses/MIT)
 
 </div>
 

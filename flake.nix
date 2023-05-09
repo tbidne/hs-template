@@ -46,7 +46,7 @@
                   (buildTools compiler ++
                     (if returnShellEnv then devTools compiler else [ ]));
             };
-          mkApp = { drv }: {
+          mkApp = drv: {
             type = "app";
             program = "${drv}/bin/${drv.name}";
           };
@@ -56,8 +56,8 @@
           devShells.default = mkPkg true;
 
           apps = {
-            format = mkApp {
-              drv = pkgs.writeShellApplication {
+            format = mkApp (
+              pkgs.writeShellApplication {
                 name = "format";
                 text = builtins.readFile ./tools/format.sh;
                 runtimeInputs = [
@@ -65,29 +65,29 @@
                   compiler.ormolu
                   pkgs.nixpkgs-fmt
                 ];
-              };
-            };
-            haddock = mkApp {
-              drv = pkgs.writeShellApplication {
+              }
+            );
+            haddock = mkApp (
+              pkgs.writeShellApplication {
                 name = "haddock";
                 text = builtins.readFile ./tools/haddock.sh;
-                runtimeInputs = [compiler.ghc] ++ buildTools compiler;
-              };
-            };
-            lint = mkApp {
-              drv = pkgs.writeShellApplication {
+                runtimeInputs = [ compiler.ghc ] ++ buildTools compiler;
+              }
+            );
+            lint = mkApp (
+              pkgs.writeShellApplication {
                 name = "lint";
                 text = builtins.readFile ./tools/lint.sh;
                 runtimeInputs = [ compiler.hlint ];
-              };
-            };
-            lint-refactor = mkApp {
-              drv = pkgs.writeShellApplication {
+              }
+            );
+            lint-refactor = mkApp (
+              pkgs.writeShellApplication {
                 name = "lint-refactor";
                 text = builtins.readFile ./tools/lint-refactor.sh;
                 runtimeInputs = [ compiler.apply-refact compiler.hlint ];
-              };
-            };
+              }
+            );
           };
         };
       systems = [

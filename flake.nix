@@ -67,6 +67,13 @@
                 ];
               };
             };
+            haddock = mkApp {
+              drv = pkgs.writeShellApplication {
+                name = "haddock";
+                text = builtins.readFile ./tools/haddock.sh;
+                runtimeInputs = [compiler.ghc] ++ buildTools compiler;
+              };
+            };
             lint = mkApp {
               drv = pkgs.writeShellApplication {
                 name = "lint";

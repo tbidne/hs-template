@@ -3,12 +3,8 @@
 # hs-template
 
 [![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/tbidne/hs-template?include_prereleases&sort=semver)](https://github.com/tbidne/hs-template/releases/)
-![haskell](https://img.shields.io/static/v1?label=&message=9.6&logo=haskell&logoColor=655889&labelColor=2f353e&color=655889)
 [![MIT](https://img.shields.io/github/license/tbidne/hs-template?color=blue)](https://opensource.org/licenses/MIT)
-
-[![nix](http://img.shields.io/github/actions/workflow/status/tbidne/hs-template/nix.yaml?branch=main&label=nix&logo=nixos&logoColor=85c5e7&labelColor=2f353c)](https://github.com/tbidne/hs-template/actions/workflows/nix.yaml)
-[![cabal](http://img.shields.io/github/actions/workflow/status/tbidne/hs-template/cabal.yaml?branch=main&label=cabal&labelColor=2f353c)](https://github.com/tbidne/hs-template/actions/workflows/cabal.yaml)
-[![style](http://img.shields.io/github/actions/workflow/status/tbidne/hs-template/style.yaml?branch=main&label=style&logoColor=white&labelColor=2f353c)](https://github.com/tbidne/hs-template/actions/workflows/style.yaml)
+[![ci](http://img.shields.io/github/actions/workflow/status/tbidne/hs-template/ci.yaml?branch=main)](https://github.com/tbidne/hs-template/actions/workflows/ci.yaml)
 
 </div>
 
@@ -60,4 +56,4 @@
 
 ## Misc
 
-* `Makefile`: A makefile that provides useful shortcuts for cabal commands. For example, the most common `cabal` commands are provided, along with multiple formatters/linters.
+* `tools/`: Scripts for various tools (e.g. formatters, linters). These can also be run via nix e.g. `nix run .#format`.

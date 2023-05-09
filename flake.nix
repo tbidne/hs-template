@@ -17,23 +17,25 @@
         let
           buildTools = c: [
             c.cabal-install
-            pkgs.gnumake
             pkgs.zlib
           ];
           devTools = c: [
-            (hlib.dontCheck c.ghcid)
-            (hlib.dontCheck c.haskell-language-server)
-          ];
-          formatters = c: [
+            (hlib.dontCheck c.apply-refact)
             (hlib.dontCheck c.cabal-fmt)
+            (hlib.dontCheck c.haskell-language-server)
             (hlib.dontCheck c.hlint)
             (hlib.dontCheck c.ormolu)
             pkgs.nixpkgs-fmt
           ];
           hlib = pkgs.haskell.lib;
           ghc-version = "ghc944";
-          compiler = pkgs.haskell.packages."${ghc-version}";
-          mkPkg = returnShellEnv: withDevTools:
+          # override packages set rather than developPackage's overrides so
+          # we can use the same overlay with nix build, dev shell, and apps.
+          compiler = pkgs.haskell.packages."${ghc-version}".extend (_: prev: {
+            apply-refact = prev.apply-refact_0_11_0_0;
+          }
+          );
+          mkPkg = returnShellEnv:
             compiler.developPackage {
               inherit returnShellEnv;
               name = "hs-template";
@@ -41,14 +43,44 @@
               modifier = drv:
                 pkgs.haskell.lib.addBuildTools drv
                   (buildTools compiler ++
-                    (if returnShellEnv then formatters compiler else [ ]) ++
-                    (if withDevTools then devTools compiler else [ ]));
+                    (if returnShellEnv then devTools compiler else [ ]));
             };
+          mkApp = { drv }: {
+            type = "app";
+            program = "${drv}/bin/${drv.name}";
+          };
         in
         {
-          packages.default = mkPkg false false;
-          devShells.default = mkPkg true true;
-          devShells.ci = mkPkg true false;
+          packages.default = mkPkg false;
+          devShells.default = mkPkg true;
+
+          apps = {
+            format = mkApp {
+              drv = pkgs.writeShellApplication {
+                name = "format";
+                text = builtins.readFile ./tools/format.sh;
+                runtimeInputs = [
+                  compiler.cabal-fmt
+                  compiler.ormolu
+                  pkgs.nixpkgs-fmt
+                ];
+              };
+            };
+            lint = mkApp {
+              drv = pkgs.writeShellApplication {
+                name = "lint";
+                text = builtins.readFile ./tools/lint.sh;
+                runtimeInputs = [ compiler.hlint ];
+              };
+            };
+            lint-refactor = mkApp {
+              drv = pkgs.writeShellApplication {
+                name = "lint-refactor";
+                text = builtins.readFile ./tools/lint-refactor.sh;
+                runtimeInputs = [ compiler.apply-refact compiler.hlint ];
+              };
+            };
+          };
         };
       systems = [
         "x86_64-darwin"

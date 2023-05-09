@@ -31,10 +31,11 @@
           ghc-version = "ghc944";
           # override packages set rather than developPackage's overrides so
           # we can use the same overlay with nix build, dev shell, and apps.
-          compiler = pkgs.haskell.packages."${ghc-version}".extend (_: prev: {
-            apply-refact = prev.apply-refact_0_11_0_0;
-          }
-          );
+          compiler = pkgs.haskell.packages."${ghc-version}".override {
+            overrides = _: prev: {
+              apply-refact = prev.apply-refact_0_11_0_0;
+            };
+          };
           mkPkg = returnShellEnv:
             compiler.developPackage {
               inherit returnShellEnv;

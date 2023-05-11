@@ -6,7 +6,7 @@ export hs_dirs="src app"
 
 nixpkgs-fmt ./
 
-cabal-fmt --inplace "$(find . -type f -name '*.cabal')"
+cabal-fmt --inplace hs-template.cabal
 
 # shellcheck disable=SC2046,SC2086
 ormolu -m inplace $(find $hs_dirs -type f -name '*.hs')

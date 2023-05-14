@@ -43,7 +43,7 @@
 
 ## Nix
 
-* `flake.nix / flake.lock`: For `nix` users. A nix shell can be entered with `nix develop` that will give the tools necessary for haskell development with `cabal`.
+* `flake.nix / flake.lock`: For `nix` users. A nix shell can be entered with `nix develop` that will give the tools necessary for haskell development with `cabal`. We also define several nix apps for formatting and linting e.g. `nix run .#format`.
 
 * For a minimal nix setup (i.e. no flakes), see https://github.com/tbidne/nix-hs-shells. The default setup can be used as a basic nix shell.
 
@@ -56,4 +56,4 @@
 
 ## Misc
 
-* `tools/`: Scripts for various tools (e.g. formatters, linters). These can also be run via nix e.g. `nix run .#format`.
+* `tools/haddock.sh`: Generates haddock docs at `docs/`.

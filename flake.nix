@@ -6,10 +6,7 @@
   };
   inputs.flake-parts.url = "github:hercules-ci/flake-parts";
   inputs.nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-  inputs.nix-hs-utils = {
-    url = "github:tbidne/nix-hs-utils";
-    inputs.flake-compat.follows = "flake-compat";
-  };
+  inputs.nix-hs-utils.url = "github:tbidne/nix-hs-utils";
   outputs =
     inputs@{ flake-compat
     , flake-parts
@@ -35,7 +32,7 @@
               name = "hs-template";
               root = ./.;
             };
-          hs-dirs = "app src";
+          hsDirs = "app src";
         in
         {
           packages.default = mkPkg false;
@@ -43,13 +40,13 @@
 
           apps = {
             format = nix-hs-utils.format {
-              inherit compiler hs-dirs pkgs;
+              inherit compiler hsDirs pkgs;
             };
             lint = nix-hs-utils.lint {
-              inherit compiler hs-dirs pkgs;
+              inherit compiler hsDirs pkgs;
             };
             lint-refactor = nix-hs-utils.lint-refactor {
-              inherit compiler hs-dirs pkgs;
+              inherit compiler hsDirs pkgs;
             };
           };
         };

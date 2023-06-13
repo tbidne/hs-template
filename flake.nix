@@ -1,15 +1,10 @@
 {
   description = "A Template for Haskell Packages";
-  inputs.flake-compat = {
-    url = "github:edolstra/flake-compat";
-    flake = false;
-  };
   inputs.flake-parts.url = "github:hercules-ci/flake-parts";
   inputs.nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
   inputs.nix-hs-utils.url = "github:tbidne/nix-hs-utils";
   outputs =
-    inputs@{ flake-compat
-    , flake-parts
+    inputs@{ flake-parts
     , nixpkgs
     , nix-hs-utils
     , self

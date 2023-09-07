@@ -13,12 +13,13 @@
       perSystem = { pkgs, ... }:
         let
           hlib = pkgs.haskell.lib;
-          ghc-version = "ghc944";
+          ghc-version = "ghc962";
           # override packages set rather than developPackage's overrides so
           # we can use the same overlay with nix build, dev shell, and apps.
           compiler = pkgs.haskell.packages."${ghc-version}".override {
             overrides = _: prev: {
-              apply-refact = prev.apply-refact_0_11_0_0;
+              hlint = prev.hlint_3_6_1;
+              ormolu = prev.ormolu_0_7_1_0;
             };
           };
           mkPkg = returnShellEnv:
@@ -27,22 +28,16 @@
               name = "hs-template";
               root = ./.;
             };
-          hsDirs = "app src";
+          compilerPkgs = { inherit compiler pkgs; };
         in
         {
           packages.default = mkPkg false;
           devShells.default = mkPkg true;
 
           apps = {
-            format = nix-hs-utils.format {
-              inherit compiler hsDirs pkgs;
-            };
-            lint = nix-hs-utils.lint {
-              inherit compiler hsDirs pkgs;
-            };
-            lint-refactor = nix-hs-utils.lint-refactor {
-              inherit compiler hsDirs pkgs;
-            };
+            format = nix-hs-utils.format compilerPkgs;
+            lint = nix-hs-utils.lint compilerPkgs;
+            lintRefactor = nix-hs-utils.lintRefactor compilerPkgs;
           };
         };
       systems = [

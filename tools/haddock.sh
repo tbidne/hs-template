@@ -10,4 +10,4 @@ mkdir -p docs/
 # shellcheck disable=SC2038
 find docs/ -type f | xargs -I % sh -c "rm -r %"
 
-cp -r dist-newstyle/build/x86_64-linux/ghc-9.4.4/hs-template-0.1/opt/doc/html/hs-template/* docs/
+cp -r dist-newstyle/build/x86_64-linux/ghc-*/hs-template-0.1/opt/doc/html/hs-template/* docs/

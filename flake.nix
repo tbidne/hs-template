@@ -13,13 +13,13 @@
       perSystem = { pkgs, ... }:
         let
           hlib = pkgs.haskell.lib;
-          ghc-version = "ghc962";
+          ghc-version = "ghc963";
           # override packages set rather than developPackage's overrides so
           # we can use the same overlay with nix build, dev shell, and apps.
           compiler = pkgs.haskell.packages."${ghc-version}".override {
             overrides = _: prev: {
               hlint = prev.hlint_3_6_1;
-              ormolu = prev.ormolu_0_7_1_0;
+              ormolu = prev.ormolu_0_7_2_0;
             };
           };
           mkPkg = returnShellEnv:

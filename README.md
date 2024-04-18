@@ -15,6 +15,7 @@
 - [Structure](#structure)
   - [Haskell](#haskell)
     - [Cabal](#cabal)
+    - [Stack](#stack)
     - [HS Misc](#hs-misc)
   - [Nix](#nix)
   - [CI](#ci)
@@ -22,7 +23,7 @@
 
 # Introduction
 
-`hs-template` is a template for haskell projects with `cabal` and `nix` integration.
+`hs-template` is a template for haskell projects with `cabal`, `stack`, and `nix` integration.
 
 # Structure
 
@@ -36,6 +37,10 @@
 
 * `cabal.project`: This project adds additional options that are used at build time. Here we use it to turn various warnings on.
 
+### Stack
+
+* `stack.yaml(.lock)`: This add a minimal `stack` configuration.
+
 ### HS Misc
 
 * `hie.yaml`: This file helps with IDE integration via the `haskell-language-server`.
@@ -43,7 +48,9 @@
 
 ## Nix
 
-* `flake.nix / flake.lock`: For `nix` users. A nix shell can be entered with `nix develop` that will give the tools necessary for haskell development with `cabal`. We also define several nix apps for formatting and linting e.g. `nix run .#format`.
+* `flake.nix / flake.lock`: For `nix` users. A nix shell can be entered with `nix develop` that will give the tools necessary for haskell development with `cabal`. There is also a `stack` shell with `nix develop .#stack`.
+
+We also define several nix apps for formatting and linting e.g. `nix run .#format`.
 
 * For a minimal nix setup (i.e. no flakes), see https://github.com/tbidne/nix-hs-shells. The default setup can be used as a basic nix shell.
 
@@ -51,6 +58,7 @@
 
 * `.github/workflows/`: Several github actions are defined that verify:
   * Build / Tests with `cabal` and multiple ghc versions.
+  * Build / Tests with `stack`.
   * Build / Test with nix directly (i.e. `nix build`).
   * Linting (e.g. formatting).
 

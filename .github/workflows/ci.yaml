@@ -40,6 +40,26 @@ jobs:
 
       - name: Compile
         run: cabal build
+  stack:
+    strategy:
+      fail-fast: false
+      matrix:
+        os:
+        - "macos-latest"
+        - "ubuntu-latest"
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: haskell-actions/setup@v2
+        with:
+          enable-stack: true
+
+      - name: Compile
+        run: stack build --ghc-options -Werror
+
+      - name: Test
+        run: stack test --ghc-options -Werror
   nix:
     strategy:
       fail-fast: false
@@ -77,3 +97,8 @@ jobs:
 
       - name: HLint
         run: nix run .#lint
+
+      # Don't usually want this in CI, but we have this here to test that
+      # it actually runs.
+      - name: Refactor
+        run: nix run .#lintRefactor

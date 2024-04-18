@@ -1,0 +1,20 @@
+resolver: lts-22.17
+packages:
+- .
+ghc-options:
+  "$locals":
+    -Wall -Wcompat
+    -Widentities
+    -Wincomplete-record-updates
+    -Wincomplete-uni-patterns
+    -Wmissing-deriving-strategies
+    -Wmissing-export-lists
+    -Wmissing-exported-signatures
+    -Wmissing-home-modules
+    -Wpartial-fields
+    -Wprepositive-qualified-module
+    -Wredundant-constraints
+    -Wunused-binds
+    -Wunused-packages
+    -Wunused-type-patterns
+    -Wno-unticked-promoted-constructors

@@ -15,7 +15,7 @@
         { pkgs, ... }:
         let
           hlib = pkgs.haskell.lib;
-          ghc-version = "ghc964";
+          ghc-version = "ghc982";
           # override packages set rather than developPackage's overrides so
           # we can use the same overlay with nix build, dev shell, and apps.
           compiler = pkgs.haskell.packages."${ghc-version}".override { overrides = _: _: { }; };

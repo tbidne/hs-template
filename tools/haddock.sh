@@ -2,7 +2,6 @@ set -e
 
 export LANG="C.UTF-8"
 
-cabal update
 cabal haddock --haddock-hyperlink-source --haddock-quickjump
 
 mkdir -p docs/
@@ -10,4 +9,4 @@ mkdir -p docs/
 # shellcheck disable=SC2038
 find docs/ -type f | xargs -I % sh -c "rm -r %"
 
-cp -r dist-newstyle/build/x86_64-linux/ghc-*/hs-template-0.1/opt/doc/html/hs-template/* docs/
+cp -r dist-newstyle/build/x86_64-linux/ghc-*/hs-template-*/opt/doc/html/hs-template/* docs/

@@ -18,13 +18,14 @@ maintainer:         tbidne@protonmail.com
 homepage:           https://github.com/tbidne/hs-template/
 bug-reports:        https://github.com/tbidne/hs-template/issues
 synopsis:           Template
-description:        Template
+description:        A Template
 category:           Template
 extra-source-files:
   .gitignore
   cabal.project
-  CHANGELOG.md
   README.md
+
+extra-doc-files:    CHANGELOG.md
 
 source-repository head
   type:     git

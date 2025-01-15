@@ -11,6 +11,7 @@ tested-with:
    || ==9.6.5
    || ==9.8.2
    || ==9.10.1
+   || ==9.12.1
 
 copyright:          2022-2025 Thomas Bidne
 author:             Thomas Bidne
@@ -70,7 +71,7 @@ common common-lang
 library
   import:          common-lang
   exposed-modules: Lib
-  build-depends:   base >=4.14.0.0 && <4.21
+  build-depends:   base >=4.14.0.0 && <4.22
   hs-source-dirs:  src
 
 executable hs-template
